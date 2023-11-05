@@ -1,0 +1,169 @@
+\documentclass[25pt,a1paper,landscape,
+               margin=0.5cm,colspace=1.25cm,
+               subcolspace=-0.5cm,blockverticalspace=1.25cm]{tikzposter}
+\usecolorstyle{Default}
+\colorlet{backgroundcolor}{white}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{zref-savepos}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+% Remove LaTeX / tikzposter information
+\tikzposterlatexaffectionproofoff
+
+% Title based on the example in section 4.1 of the tikzposter documentation
+%   P. Richter, E. Botoeva, R. Barnard, and D. Surmann, "The tikzposter class", Jan. 17 2014
+\settitle{ \centering \vbox{
+    \vspace{1.25cm}
+    \centering
+    \color{titlefgcolor} {\fontsize{72pt}{72pt}\selectfont \bfseries \sc \@title\\}
+    \vspace{1.25cm}
+    % Reduce the font size here if necessary to fit all names
+    {\fontsize{40pt}{40pt}\selectfont \@author}
+    \vspace{1.25cm}
+}}
+
+% Defines a block which fills to the bottom of the poster
+\newcounter{vfillblockcounter}
+\newcommand{\vfillblock}[2]{
+    \block{#1}{
+        \zsaveposy{vfillblock\the\value{vfillblockcounter}}
+        \parbox[t][\zposy{vfillblock\the\value{vfillblockcounter}}sp
+                   - \the\TP@blockbodyinnersep - \the\TP@blockverticalspace
+                   - \the\paperheight/2 + \the\textheight/2]{\linewidth}{#2}
+    }
+    \stepcounter{vfillblockcounter}
+}
+
+% Some custom colours
+\definecolor{custom_grey_0}{rgb}{0.7, 0.7, 0.7}
+\definecolor{custom_grey_1}{rgb}{0.2, 0.2, 0.2}
+
+% Poster title
+\title{Facets of Mathematics Poster Template}
+% List of authors
+\author{James R. Maddison}
+
+\begin{document}
+
+% The title
+\maketitle[width=0.8\textwidth,roundedcorners=30pt,innersep=0cm,
+           titletotopverticalspace=1.25cm,
+           titletoblockverticalspace=1.25cm]
+
+% The rest of the poster
+\begin{columns}
+
+% First column
+\column{0.25}
+% First block in the first column
+\block{Poster creation with \LaTeX}{
+This template can be used to create a poster using \LaTeX. It makes use of the \texttt{tikzposter} \LaTeX\ package to typeset the different poster elements.
+}
+
+% Second block in the first column
+\block{Including mathematics}{
+The full features of \LaTeX\ are available within the poster. For example we can include inline formul{\ae}, $e^{i \pi} + 1 = 0$, and can include numbered equations
+\begin{equation}\label{eqn:forward_euler}
+  \psi_{n + 1} = \psi_n + h F \left( \psi_n, t_n \right),
+\end{equation}
+and then refer to them via a label, as in equation \eqref{eqn:forward_euler}. We can also include unnumbered and multi-line equations.
+}
+
+% Final block in the first column
+\vfillblock{Including code}{
+It is possible to include code, but the code should appear in a separate file and be included with \texttt{lstinputlisting}. For example:
+\bigskip
+% Note the reduced font size and extra indentation here
+\lstinputlisting[language=Python,basicstyle=\normalsize,xleftmargin=1cm]{factorial.py}
+}
+
+% Second column
+\column{0.75}
+
+% First block in the second column
+\block{Creating columns}{
+Columns are created using the \texttt{column} command inside the \texttt{columns} environment (i.e. between \texttt{{\textbackslash}begin\{columns\}} and \texttt{{\textbackslash}end\{columns\}}). Above this block (check the source code!) \texttt{{\textbackslash}column\{0.75\}} creates a column which spans three quarters of the poster. Poster contents is added to the columns by adding one or more blocks.
+
+\bigskip
+Subcolumns are created using the \texttt{{\textbackslash}subcolumn} command within the \texttt{subcolumns} environment (i.e. between \texttt{{\textbackslash}begin\{subcolumns\}} and \texttt{{\textbackslash}end\{subcolumns\}}). Below, \texttt{{\textbackslash}subcolumn\{0.33\}} creates a subcolumn which spans 33\% of the \emph{column} within which the subcolumns are defined.
+}
+
+% Divide the second column into subcolumns
+\begin{subcolumns}
+
+% First subcolumn
+\subcolumn{0.33}
+
+% First block in the first subcolumn
+\block{Defining blocks}{
+Within each column or subcolumn a block, containing text and other elements, can be defined using the \texttt{block} command. This can be used via \texttt{{\textbackslash}block\{[title]\}\{[contents]\}}.
+
+\bigskip
+The final block in a column or subcolumn can be expanded to fill to the bottom of the poster by using \texttt{{\textbackslash}vfillblock} in place of \texttt{{\textbackslash}block}.
+}
+
+% Final block in the second subcolumn
+{  % Extra brackets here prevent these colours being used for all remaining blocks
+\colorlet{blocktitlefgcolor}{black}
+\colorlet{blocktitlebgcolor}{custom_grey_0}
+\colorlet{blockbodyfgcolor}{white}
+\colorlet{blockbodybgcolor}{custom_grey_1}
+\vfillblock{Customizing blocks}{
+It is possible to change the colours used in a block -- for example to highlight a particularly important piece of information or a particularly important result. This example sets all four colours, and also makes use of some custom colours set near the top of the file using \texttt{definecolor}.
+}
+}
+
+% Second subcolumn
+\subcolumn{0.67}
+
+% First block in the second subcolumn
+\block{Including figures}{
+\begin{minipage}[m]{0.4\linewidth}
+You can add figures to the poster, but this is a bit different from the documents we have used so far. To include a figure in the poster you should use the \texttt{tikzfigure} environment, with the caption in square brackets, and the label before the figure itself (see the source code for Fig. \ref{fig:chess}).
+
+\bigskip
+In this example we also use the \texttt{minipage} environment to place this text to the left of the image.
+\end{minipage}
+\begin{minipage}[m]{0.6\linewidth}
+\begin{tikzfigure}[An $8$-bit greyscale image of part of a chess set.]
+\label{fig:chess}
+\includegraphics[width=0.8\linewidth]{chess_1024x768_gs.png}
+\end{tikzfigure}
+\end{minipage}
+}
+
+% Final block in the second subcolumn
+\vfillblock{References}{
+{
+\fontsize{26}{26}\selectfont  % Change the font size for the references
+\renewcommand{\section}[2]{}  % Prevent any new sections (i.e. 'References') being created here
+% The bibliography
+\begin{thebibliography}{9}
+% A journal article
+\bibitem{einstein1905}
+A. Einstein,
+\emph{Ist die Tr{\"a}gheit eines K{\"o}rpers von seinem Energieinhalt abh{\"a}nging?}, Annalen der Physik 323(13), 639--641, 1905
+
+% A textbook
+\bibitem{vallis2006}
+G. K. Vallis,
+\emph{Atmospheric and Oceanic Fluid Dynamics: Fundamentals and Large-scale Circulation}, Cambridge University Press, 2006
+
+% A website
+\bibitem{overleaf}
+Overleaf Documentation, https://www.overleaf.com/learn/latex/Main\_Page, accessed 13 August 2020
+\end{thebibliography}
+}
+}
+
+\end{subcolumns}
+
+\end{columns}
+
+\end{document}

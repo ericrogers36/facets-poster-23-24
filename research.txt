@@ -1,0 +1,26 @@
+LINKS:
+
+https://en.wikipedia.org/wiki/Finite_projective_plane
+
+https://mickydore.medium.com/dobble-theory-and-implementation-ff21ddbb5318#:~:text=If%20any%20two%20distinct%20lines,in%20a%20deck%20of%20Dobble.
+
+https://www.uu.nl/sites/default/files/Cecilia%20Salgado%20HandoutNWD2022.pdf
+
+https://puzzlewocky.com/games/the-math-of-spot-it/
+
+https://maa.org/sites/default/files/pdf/horizons/PolsterApril2015.pdf
+
+Modular Arithmetic - use PPS notes?
+
+---
+
+Fano Plane
+Field Axioms
+How to construct dobble-esque card games systematically
+
+Combinatorics - this relates to Kirkman's schoolgirl problem
+https://en.wikipedia.org/wiki/Kirkman%27s_schoolgirl_problem
+
+Steiner Systems?
+
+
