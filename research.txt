@@ -22,5 +22,25 @@ Combinatorics - this relates to Kirkman's schoolgirl problem
 https://en.wikipedia.org/wiki/Kirkman%27s_schoolgirl_problem
 
 Steiner Systems?
+https://blog.polettix.it/some-maths-for-dobble/
 
+The Dobble Problem is a Steiner System - specifically S(2,8,57)
+these parameters are because:
+ - 57 cards total in Dobble
+ - Cards (blocks) with 8 symbols with the constraint that
+ - any 2 pictures are contained in exactly one card (block)
+
+"a PP of order n is “just” a Steiner system S(2, n+1, n^2 + n + 1)"
+
+Ray-Chaudhuri-Wilson???
+https://www.theoremoftheday.org/MathsStudyGroup/ADFnotes-Wilsons-theorem-for-block-designs.pdf
+
+Fundamental rule of dobble - any 2 cards have exactly one matching symbol
+
+----
+Summary (that Eric is trying to do)
+
+Dobble is nothing but a Steiner Sytem, S(2,q+1,q^2+2q+1). The reason why we have the 2 as the first parameter is that we are considering pairs. If we pick *any* 2 dobble cards, they can not share a matching pair, out of *any* of the possible pairs on that card. If they did, then we we would have 2 shared symbols on a pair of cards, which contradicts the FRoD.
+
+https://www.theoremoftheday.org/MathsStudyGroup/ADFnotes-Wilsons-theorem-for-block-designs.pdf
 
