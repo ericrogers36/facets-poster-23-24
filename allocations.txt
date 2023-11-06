@@ -1,0 +1,22 @@
+PROVISIONAL 06/11/23
+
+TASKS:
+1) Dobble Algorithm - generating cards
+
+2)Introducing Finite Fields / Connections to Finite Projective Planes
+
+3)Link to Finite Projective Planes from Steiner Sytems / Combinatorics - general dobble problems and prime numbers
+
+4)Linking Projective Planes to Dobble - different orders
+^^Explicit Examples
+
+5)Introduction: What is Dobble?
+
+
+
+Ben - 1?
+Eric - 3?
+Sam - 
+Teagan - 
+Corrine - 
+
