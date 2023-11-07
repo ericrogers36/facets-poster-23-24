@@ -1,3 +1,4 @@
+# tex
 *.aux
 *.bbl
 *.blg
@@ -10,3 +11,7 @@
 *.snm
 *.synctex.gz
 *.toc
+
+# python
+__pycache__
+*.pyc
