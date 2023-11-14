@@ -1,0 +1,19 @@
+Let us imagine that have a big set of unique items.
+
+We wish to have subsets of this big set which contain a fixed, equal number of items within them.
+
+The rule is that these subsets have to have an overlap of one item - there cannot be an overlap of two unique items between any two subsets. In effect, for any pair of items in any subset, this pair cannot reappear in any other subset.
+
+This is known as a Steiner system notated as S(2,k,n), where k is the number of blocks and n is the number of total items. (It can also be referred to as a symmetric 2-design, a 2-(n,k,1)-design).
+
+This problem is very much akin to Dobble - in essence, the items are points and the subsets are cards. For the standard verison of Dobble, we essentially just have the Steiner system S(2,8,57).
+These parameters are because:
+ - We have 57 cards total in Dobble
+ - There are cards (blocks) with 8 symbols with the constraint that
+ - any 2 pictures are contained in exactly one card (block)
+
+However, there exists a parallel between a Steiner system and a projective plane. If we have a finite projective plane P such that any line has exactly q+1 points, we can conclude that there are q^2+q+1 total points in P, and that P is a S(2, q+ 1, q^2 +q+ 1)
+Steiner system (or a 2-(q^2 +q+ 1, q + 1, 1) design).
+
+Handbook of Combinatorial Designs
+Charles J. Colbourn, Jeffrey H. Dinitz
