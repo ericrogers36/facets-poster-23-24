@@ -50,3 +50,7 @@ Wikipedia:
 The existence of finite projective planes of other orders is an open question. The only general restriction known on the order is the Bruck–Ryser–Chowla theorem that if the order N is congruent to 1 or 2 mod 4, it must be the sum of two squares. This rules out N = 6. The next case N = 10 has been ruled out by massive computer calculations. Nothing more is known; in particular, the question of whether there exists a finite projective plane of order N = 12 is still open.
 
 https://www.petercollingridge.co.uk/blog/mathematics-toys-and-games/dobble/
+
+Combinatorical Designs
+
+https://en.wikipedia.org/wiki/Combinatorial_design
