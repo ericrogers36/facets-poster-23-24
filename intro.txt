@@ -1,0 +1,4 @@
+Potential intro:
+
+Dobble is a game created by Jacques Cottereau - a French mathematics enthusiast. Cottereau’s idea for the game came from a fascination for combinatorics, pairs and ordering and is said to be inspired by Kirkman’s schoolgirl problem. There are 55 cards in a standard game of dobble, each containing 8 distinct symbols from a pool of 57 unique symbols. The game has taken many different forms - some versions aim to get rid of your cards first, some to collect as many as possible, or even to sabotage your opponents. However, the key principle of the game is that every unique pair of Dobble cards contain one symbol in common. Although this fact seems like a coincidence, it relies on aspects of geometry, combinatorics, the projective - and finite projective - plane. 
+
