@@ -1,0 +1,29 @@
+FIND SOURCES FOR THIS
+
+Dobble - uniform block design.
+Uniform since all cards (blocks) contain 8 symbols.
+
+---
+
+FROM WIKIPEDIA:
+
+Finite projective planes are symmetric 2-designs with λ = 1 and order n > 1. For these designs the symmetric design equation becomes:
+
+v-1 = k(k+1) WHICH GIVES US
+v = k^2 + k + 1
+
+A block design with λ = 1 and t=2 (dobble) is a Steiner system
+
+In an alternate notation for block designs, an S(t,k,n) would be a t-(n,k,1) design.
+
+The Dobble Problem is a Steiner System - specifically S(2,8,57)
+these parameters are because:
+ - 57 cards total in Dobble
+ - Cards (blocks) with 8 symbols with the constraint that
+ - any 2 pictures are contained in exactly one card (block)
+
+"a PP of order n is “just” a Steiner system S(2, n+1, n^2 + n + 1)"
+
+So dobble is a 2-(n+1,n^2+n+1,1) design.
+
+Dobble combinatorically
