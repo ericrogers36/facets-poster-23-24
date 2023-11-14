@@ -87,31 +87,27 @@
 \begin{column}{\colwidth}
 
   \begin{block}{Introduction}
-    Dobble is a game created by Jacques Cottereau - a French mathematics enthusiast. Cottereau’s idea for the game came from a fascination for combinatorics, pairs and ordering and is said to be inspired by Kirkman’s schoolgirl problem. There are 55 cards in a standard game of dobble, each containing 8 distinct symbols from a pool of 57 unique symbols. The game has taken many different forms - some versions aim to get rid of your cards first, some to collect as many as possible, or even to sabotage your opponents. However, the key principle of the game is that every unique pair of Dobble cards contain one symbol in common. Although this fact seems like a coincidence, it relies on aspects of geometry, combinatorics, the projective - and finite projective - plane. 
+    Dobble is a game created by Jacques Cottereau - a French mathematics enthusiast. Cottereau’s idea for the game came from a fascination for combinatorics, pairs and ordering and is said to be inspired by Kirkman’s schoolgirl problem. There are $55$ cards in a standard game of Dobble, each containing $8$ distinct symbols from a pool of $57$ unique symbols. The game has taken many different forms - some versions aim to get rid of your cards first, some to collect as many as possible, or even to sabotage your opponents. However, the key principle of the game is that every unique pair of Dobble cards contain one symbol in common. Although this fact seems like a coincidence, it relies on aspects of geometry, combinatorics, the projective - and finite projective - plane. 
   \end{block}
 
-  \begin{block}{A block title}
+  \begin{block}{The Dobble Problem and Combinatorics}
 
-    Some block contents, followed by a diagram, followed by a dummy paragraph.
+    Let us first imagine that we have a big set of unique items. We wish to have subsets of this big set which contain a fixed, equal number of items within them.
+    
+    The rule is that these subsets have to have an overlap of \emph{one item} - there cannot be an overlap of two unique items between any two subsets. In effect, for any pair of items in any subset, \emph{this pair cannot reappear in any other subset}.
 
-    \begin{figure}
-      \centering
-      \begin{tikzpicture}[scale=3]
-  \draw \foreach \a in {30,150,270}{(\a:1)  -- (180+\a:2)}
-        (90:2)  -- (210:2) -- (330:2) -- cycle
-        (0:0) circle (1);
-  \fill \foreach \p in {(0:0),(30:1),(90:2),(150:1),(210:2),(270:1),(330:2)}
-        {\p circle(3pt)};
-\end{tikzpicture}
-      \caption{The Fano Plane}
-    \end{figure}
+    This is known as a Steiner system notated as $S(2,k,n)$, where $k$ is the number of blocks and $n$ is the number of total items. (It can also be referred to as a symmetric $2$-design, a $2$-$(n,k,1)$ design).
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
-    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
-    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
-    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
-    turpis condimentum urna, quis malesuada sapien arcu eu purus.
+This problem is very much akin to Dobble - in essence, the items are points and the subsets are cards. For the standard verison of Dobble, we essentially just have the Steiner system $S(2,8,57)$.
+These parameters are because:
+\begin{itemize}
+    \item We have 57 cards total in Dobble
+    \item There are cards (blocks) with $8$ symbols with the constraint that
+    \item Any $2$ pictures are contained in exactly one card (block).
+\end{itemize}
 
+However, there exists a link between Steiner systems and projective planes. If we have a finite projective plane $P$ such that any line has exactly $q+1$ points, we can conclude that there are $q^2+q+1$ total points in $P$, and that $P$ is a $S(2, q+ 1, q^2 +q+ 1)$
+Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design)\cite{storme2006}.
   \end{block}
 
   \begin{alertblock}{A highlighted block}
@@ -123,8 +119,6 @@
     consectetur mauris quam, at finibus elit auctor ac. Aliquam erat volutpat.
     Aenean at nisl ut ex ullamcorper eleifend et eu augue. Aenean quis velit
     tristique odio convallis ultrices a ac odio.
-
-    Aenean tincidunt risus eros, at gravida lorem sagittis vel. 
 
   \end{alertblock}
 
@@ -157,31 +151,27 @@
 
   \end{block}
 
-  \begin{block}{Fusce aliquam magna velit}
+    \begin{block}{A block title}
 
-    Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
-    vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
-    velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
-    molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
-    posuere.
+    Some block contents, followed by a diagram, followed by a dummy paragraph.
 
     \begin{figure}
       \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            scale only axis,
-            no markers,
-            domain=0:2*pi,
-            samples=100,
-            axis lines=center,
-            axis line style={-},
-            ticks=none]
-          \addplot[red] {sin(deg(x))};
-          \addplot[blue] {cos(deg(x))};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{Another figure caption.}
+      \begin{tikzpicture}[scale=3]
+  \draw \foreach \a in {30,150,270}{(\a:1)  -- (180+\a:2)}
+        (90:2)  -- (210:2) -- (330:2) -- cycle
+        (0:0) circle (1);
+  \fill \foreach \p in {(0:0),(30:1),(90:2),(150:1),(210:2),(270:1),(330:2)}
+        {\p circle(3pt)};
+\end{tikzpicture}
+      \caption{The Fano Plane}
     \end{figure}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
+    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
+    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
+    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
+    turpis condimentum urna, quis malesuada sapien arcu eu purus.
 
   \end{block}
 
