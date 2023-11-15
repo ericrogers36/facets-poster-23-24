@@ -1,0 +1,3 @@
+Still very rough draft don't use this yet plz T-T
+
+A field is a set where arithmetic behaves in accordance with the field axioms. It is intuitive that a finite field is thus a finite set of elements that satisfy these conditions. The number of elements within a finite field is referred to as its order. A finite field can only exist if it has order p^k, where p is a prime number and k is a positive integer. Using such a field we can build a vector space, thus a projective plane exists. A finite field of order q=p^k produces the projective plane q^2+q+1.
