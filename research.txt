@@ -53,3 +53,30 @@ https://www.petercollingridge.co.uk/blog/mathematics-toys-and-games/dobble/
 Combinatorical Designs
 
 https://en.wikipedia.org/wiki/Combinatorial_design
+
+
+infinite projective plane and its link to dobble 
+
+
+Building of of stiener systems and projective plans we can delve deeper into their relation to dobble.
+Consider a game of dobble with only 7 cards. If each point represtents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. So if we draw this configuration for the 7 card example we get:
+%insert pic here%
+It follows that each card constains 3 symbols, no two cards are the same and any two cards will have one and only one matching symbol with 7 different symbols in total.
+We can see that this too is a steiner system, 
+q = p^n = 2^1
+q + 1 = 3 = no. of symbols on each card
+q^2 + q + 1 = 7 = no. of cards and total no. of symbols
+
+Now lets apply this to our full sized version of dobble.
+We can start by constructing a 7 x 7 grid of points and lines such that if we choose any two of the 49 points there is a line that connects them. This can be acheived by '' Wrappimg around `` the grid.
+For example:
+$insert diagram here$
+Would be one line.
+We are then left with a grid of 56 lines and if we analise it we can see that there are actually 8 different systems of 7 parallel lines. Each collection of parallel lines converges at infinity at some point,
+hense we have an additional 8 points at infinity that can be connected with a final line. Therefore all lines go through 8 points .
+Once again this visualises the fact thatb is is a steiner system.
+q = p^n = 7^1
+q + 1 = 8 = no. of symbols on each card
+q^2 + q + 1 = 57 = no. of cards and total no. of symbols
+
+But there are only 55 cards in dobble? It is theorised that this is to simplify the printing process. In any case the cards can still be arranged in the same way and essentially 'skip' these points and it will still work. 
