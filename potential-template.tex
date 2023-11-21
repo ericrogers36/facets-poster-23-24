@@ -128,33 +128,10 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design)\cite{storme2006}.
 
 \begin{column}{\colwidth}
 
-  \begin{block}{A block containing an enumerated list}
+  \begin{block}{Steiner systems and Projective Planes}
 
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
-    \begin{enumerate}
-      \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-        accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-        montes, nascetur ridiculus mus.
-      \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-        massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-        velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-      \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
-        nulla accumsan, non rhoncus lectus condimentum.
-    \end{enumerate}
-
-  \end{block}
-
-    \begin{block}{A block title}
-
-    Some block contents, followed by a diagram, followed by a dummy paragraph.
-
+    We can delve deeper into their relation to Dobble.
+Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. So if we draw this configuration for the 7 card example we get:
     \begin{figure}
       \centering
       \begin{tikzpicture}[scale=3]
@@ -164,28 +141,34 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design)\cite{storme2006}.
   \fill \foreach \p in {(0:0),(30:1),(90:2),(150:1),(210:2),(270:1),(330:2)}
         {\p circle(3pt)};
 \end{tikzpicture}
-      \caption{The Fano Plane}
+      \caption{7 Card Dobble - The Fano Plane}
     \end{figure}
+It follows that each card contains $3$ symbols, no two cards are the same and any two cards will have one and only one matching symbol with $7$ different symbols in total.
+We can see that this too is a Steiner system, 
+\begin{itemize}
+    \item $q = p^n = 2^1$
+    \item $q + 1 = 3 =$ no. of symbols on each card
+    \item $q^2 + q + 1 = 7 =$ no. of cards and total no. of symbols
+\end{itemize}
+Now we can apply this to our full sized version of Dobble.
+We can start by constructing a $7\times7$ grid of points and lines such that if we choose any two of the $49$ points there is a line that connects them. This can be acheived by '' Wrapping around `` the grid.
+For example:
+\[\text{insert diagram here}\]
+would be one line.
+We are then left with a grid of $56$ lines and if we analyze it we can see that there are actually $8$ different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point,
+hense we have an additional $8$ points at infinity that can be connected with a final line. Therefore, all lines go through $8$ points.
+Once again this visualises the fact that it is a Steiner system.
+\begin{itemize}
+    \item $q = p^n = 7^1$
+    \item $q + 1 = 8 =$ no. of symbols on each card
+    \item $q^2 + q + 1 = 57 =$ no. of cards and total no. of symbols
+\end{itemize}
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
-    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
-    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
-    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
-    turpis condimentum urna, quis malesuada sapien arcu eu purus.
+But, there are only $55$ cards in Dobble? It is theorised that this is to simplify the printing process. In any case the cards can still be arranged in the same way and essentially 'skip' these points and it will still work. 
 
   \end{block}
 
-  \begin{block}{Nam cursus consequat egestas}
 
-    Nulla eget sem quam. Ut aliquam volutpat nisi vestibulum convallis. Nunc a
-    lectus et eros facilisis hendrerit eu non urna. Interdum et malesuada fames
-    ac ante \textit{ipsum primis} in faucibus. Etiam sit amet velit eget sem
-    euismod tristique. Praesent enim erat, porta vel mattis sed, pharetra sed
-    ipsum. Morbi commodo condimentum massa, \textit{tempus venenatis} massa
-    hendrerit quis. Maecenas sed porta est. Praesent mollis interdum lectus,
-    sit amet sollicitudin risus tincidunt non.
-
-  \end{block}
 
 \end{column}
 
@@ -221,27 +204,13 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design)\cite{storme2006}.
 
   \end{exampleblock}
 
-  \begin{block}{Nullam vel erat at velit convallis laoreet}
+  \begin{block}{A block title}
 
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
-    scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
+    Some block contents, followed by a diagram, followed by a dummy paragraph.
 
-    \begin{table}
-      \centering
-      \begin{tabular}{l r r c}
-        \toprule
-        \textbf{First column} & \textbf{Second column} & \textbf{Third column} & \textbf{Fourth} \\
-        \midrule
-        Foo & 13.37 & 384,394 & $\alpha$ \\
-        Bar & 2.17 & 1,392 & $\beta$ \\
-        Baz & 3.14 & 83,742 & $\delta$ \\
-        Qux & 7.59 & 974 & $\gamma$ \\
-        \bottomrule
-      \end{tabular}
-      \caption{A table caption.}
-    \end{table}
-
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
+    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
+    lobortis augue, ut lobortis turpis rhoncus sed. 
   \end{block}
 
   \begin{block}{References}
