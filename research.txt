@@ -72,7 +72,7 @@ We can see that this too is a steiner system,
 Now we can apply this to our full sized version of Dobble.
 We can start by constructing a $7\times7$ grid of points and lines such that if we choose any two of the $49$ points there is a line that connects them. This can be acheived by '' Wrapping around `` the grid.
 For example:
-\[\text{insert diagram here}\]
+
 would be one line.
 We are then left with a grid of $56$ lines and if we analyze it we can see that there are actually $84 different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point,
 hense we have an additional $8$ points at infinity that can be connected with a final line. Therefore, all lines go through $8$ points.
