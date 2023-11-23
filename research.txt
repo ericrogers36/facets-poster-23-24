@@ -83,4 +83,14 @@ Once again this visualises the fact that it is a Steiner system.
     \item $q^2 + q + 1 = 57 =$ no. of cards and total no. of symbols
 \end{itemize}
 
-But, there are only $55$ cards in dobble? It is theorised that this is to simplify the printing process. In any case the cards can still be arranged in the same way and essentially 'skip' these points and it will still work. 
+But, there are only $55$ cards in dobble? It is theorised that this is to simplify the printing process. In any case the cards can still be arranged in the same way and essentially 'skip' these points and it will still work.
+
+
+
+
+sources:
+
+https://www.math.toronto.edu/mathnet/questionCorner/infinity.html
+
+https://www.deeconometrist.nl/other/why-your-dobble-cards-always-match/
+
