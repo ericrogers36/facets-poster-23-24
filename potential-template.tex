@@ -24,6 +24,7 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
 \usepackage{anyfontsize}
+\usepackage{multicol}
 
 % ====================
 % Lengths
@@ -44,7 +45,7 @@
 
 \title{Projective Geometry and Dobble}
 
-\author{Ben Jecock, Corinne Baillie, Eric Rogers, Samuel Buxton, Teagan Addy}
+\author{Ben Jecock, Corinne Bernard, Eric Rogers, Samuel Buxton, Teagan Addy}
 
 % ====================
 % Footer (optional)
@@ -130,8 +131,9 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
   \begin{block}{Steiner systems and Projective Planes}
 
-    We can delve deeper into their relation to Dobble.
+Building of Steiner systems and projective planes we can delve deeper into their relation to Dobble.
 Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. So if we draw this configuration for the 7 card example we get:
+    \begin{multicols}{2}
     \begin{figure}
       \centering
       \begin{tikzpicture}[scale=3]
@@ -143,20 +145,27 @@ Consider a game of Dobble with only $7$ cards. If each point represents a card, 
 \end{tikzpicture}
       \caption{7 Card Dobble - The Fano Plane}
     \end{figure}
-It follows that each card contains $3$ symbols, no two cards are the same and any two cards will have one and only one matching symbol with $7$ different symbols in total.
+
+    \begin{figure}
+    \includegraphics[width=13cm]{pporder7}
+    \caption{57 Card Dobble - The Finite Plane}
+\end{figure}
+    \end{multicols}
+  \end{block}
+  
+It follows that each card contains $3$ symbols, no two cards are the same and any two cards will have one and only one matching symbol with $7$ different symbols in total. \cite{westenbrink2022}
 We can see that this too is a Steiner system where, $q = p^n = 2^1$ , $q + 1 = 3 =$ no. of symbols on each card, $q^2 + q + 1 = 7 =$ no. of cards and total no. of symbols
 
 Now we can apply this to our full sized version of Dobble.
 We can start by constructing a $7\times7$ grid of points and lines such that if we choose any two of the $49$ points there is a line that connects them. This can be achieved by '' Wrapping around `` the grid until it goes through $7$ points.
-We are then left with a grid of $56$ lines and we can see that there are actually $8$ different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point,
+We are then left with a grid of $56$ lines and we can see that there are actually $8$ different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point,\cite{spencer1999}
 hence there are $8$ more points at infinity that can be connected with a final line. Therefore, all lines go through $8$ points.
+\cite{Parker2021}
+
 Once again this visualises the fact that it is a Steiner system. Where $q = p^n = 7^1$ , $q + 1 = 8 =$ no. of symbols on each card , $q^2 + q + 1 = 57 =$ no. of cards and total no. of symbols
 
+
 It is theorised that to simplify the printing process there are only $55$ cards in Dobble. Cards can still be arranged in the same way and essentially 'skip' these points and it will still work. 
-
-  \end{block}
-
-
 
 \end{column}
 
