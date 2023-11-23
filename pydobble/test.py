@@ -2,16 +2,19 @@
 
 import dobble
 import itertools
+import sys
 
 def test_generator(q: int) -> bool:
-    d = dobble.generate(q)
+    d = dobble.DobbleDeck(q)
 
     assert(len(d) == q**2+q+1)
 
-    for c in d:
+    cards = d.cards
+
+    for c in cards:
         assert(len(c) == q+1)
 
-    for c1, c2 in itertools.combinations(d, 2):
+    for c1, c2 in itertools.combinations(cards, 2):
         n_same = 0
         for n in c1:
             n_same += n in c2
@@ -24,10 +27,4 @@ if __name__ == "__main__":
     for q in qs:
         test_generator(q)
         print("generator passed for q =", q)
-    print("passed all prime tests")
-    
-    qs = [4, 8, 9, 16]
-    for q in qs:
-        test_generator(q)
-        print("generator passed for q =", q)
-    print("passed all powers of primes tests")
+    print("passed all generation tests")
