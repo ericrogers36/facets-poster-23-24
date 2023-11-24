@@ -175,30 +175,11 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
 \begin{column}{\colwidth}
 
-  \begin{exampleblock}{A highlighted block containing some math}
+  \begin{exampleblock}{Generating Dobble Decks}
 
-    A different kind of highlighted block.
+    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a : b : c]$ where $[a : b : c] \equiv [\lambda a : \lambda b : \lambda c] \mod m$ for any $\lambda \in \mathbb{R}, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{1, 2, ... q-1\}, m = p$. However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field: we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
 
-    $$
-    \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
-    $$
-
-    Interdum et malesuada fames $\{1, 4, 9, \ldots\}$ ac ante ipsum primis in
-    faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
-    felis id vulputate.
-
-    \heading{A heading inside a block}
-
-    Praesent consectetur mi $x^2 + y^2$ metus, nec vestibulum justo viverra
-    nec. Proin eget nulla pretium, egestas magna aliquam, mollis neque. Vivamus
-    dictum $\mathbf{u}^\intercal\mathbf{v}$ sagittis odio, vel porta erat
-    congue sed. 
-
-    \heading{Another heading inside a block}
-
-    Sed augue erat, scelerisque a purus ultricies, placerat porttitor neque.
-    Donec $P(y \mid x)$ fermentum consectetur $\nabla_x P(y \mid x)$ sapien
-    sagittis egestas.
+    Once we have the set of all elements in $\mathbb{F}^2_{\mathbb{P}_q}$, we can use the property of the duality of finite projective planes: any statement is equally valid if the points and lines are exchanged. Hence, we can interpret the points also as lines and if the sum of the corresponding components of a point and a line multiplied equals zero, then that point (symbol) lies on that line (card).
 
   \end{exampleblock}
 

@@ -11,6 +11,7 @@
 *.snm
 *.synctex.gz
 *.toc
+*.xdv
 
 # python
 __pycache__
