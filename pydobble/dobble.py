@@ -2,11 +2,13 @@
 
 import argparse
 import copy
+import itertools
 import math
 import os
+import sympy
 import sys
 
-from PIL import Image, ImageDraw, ImageFont, ImageTk
+from PIL import Image, ImageDraw, ImageFont
 
 # paper sizes
 A = lambda i: (841//math.sqrt(2**i), 1189//math.sqrt(2**i))
@@ -18,7 +20,14 @@ class AlreadyExistsError(Exception):
         super().__init__(args)
         self.filename = filename
     def __str__(self):
-        return "file `{filename}' already exists".format(filename=self.filename)
+        return f"file `{self.filename}' already exists"
+
+class LazyError(Exception):
+    def __init__(self, msg, *args):
+        super().__init__(args)
+        self.msg = msg
+    def __str__(self):
+        return msg
 
 def sieve_of_eratosthenes(limit: int):
     sieve = [i for i in range(limit+1)]
@@ -109,37 +118,84 @@ class DobbleDeck:
                     break
                 else:
                     raise ValueError("`q' is not a power of a prime")
-        if n != 1:
-            # hopefully soon i shall find the time for prime powers as well...
-            raise ValueError("'n' is not equal to 1")
 
-        points = []
-        p_lookup = [0] * q**3
-        for i in range(q):
-            for j in range(q):
-                for k in range(q):
-                    if not p_lookup[i*q**2+j*q+k]:
-                        points.append((i,j,k))
-                        # since [a:b:c] is equivalent to [ka:kb:kc] we make sure we don't have any duplicates
-                        for l in range(1, q):
-                            p_lookup[((i*l)%q)*q**2+((j*l)%q)*q+((k*l)%q)] = 1
+        if n == 1:
+            points = []
+            p_lookup = [0] * q**3
+            for i in range(q):
+                for j in range(q):
+                    for k in range(q):
+                        if not p_lookup[i*q**2+j*q+k]:
+                            points.append((i,j,k))
+                            # since [a:b:c] is equivalent to [ka:kb:kc] we make sure we don't have any duplicates
+                            for l in range(1, q):
+                                p_lookup[((i*l)%q)*q**2+((j*l)%q)*q+((k*l)%q)] = 1
 
-        # we don't want [0:0:0]
-        points.pop(0)
+            # we don't want [0:0:0]
+            points.pop(0)
 
-        # generate cards, associate each point with an integer in [0,q^2+q+1)
-        cards = []
-        mapping = [-1] * q**3
-        i = 0
-        for l in points: # interpret points also as lines (duality of finite projective planes)
-            c = []
-            for p in points:
-                if (l[0]*p[0] + l[1]*p[1] + l[2]*p[2]) % q == 0:
-                    if mapping[p[0]*q**2+p[1]*q+p[2]] == -1:
-                        mapping[p[0]*q**2+p[1]*q+p[2]] = i
-                        i += 1
-                    c.append(mapping[p[0]*q**2+p[1]*q+p[2]])
-            cards.append(c)
+            # generate cards, associate each point with an integer in [0,q^2+q+1)
+            cards = []
+            mapping = [-1] * q**3
+            i = 0
+            for l in points: # interpret points also as lines (duality of finite projective planes)
+                c = []
+                for p in points:
+                    if (l[0]*p[0] + l[1]*p[1] + l[2]*p[2]) % q == 0:
+                        if mapping[p[0]*q**2+p[1]*q+p[2]] == -1:
+                            mapping[p[0]*q**2+p[1]*q+p[2]] = i
+                            i += 1
+                        c.append(mapping[p[0]*q**2+p[1]*q+p[2]])
+                cards.append(c)
+        else: # it gets VERY slow rather quickly so just using primes is much better :)
+            x = sympy.symbols("x")
+            powers = [prime**i for i in range(n, -1, -1)]
+            members = [sympy.poly(sum(int((i%powers[j])//powers[j+1])*x**(n-j-1) for j in range(n)), [x]) for i in range(q)]
+            modulus = 0
+
+            # slightly dubious uncited https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields#Irreducible_polynomials but it seems to work??
+            for a in range(prime):
+                for b in range(prime):
+                    modulus = x**n + a*x + b
+                    irreducible = True
+                    for m in members[prime:]:
+                        quot, rem = sympy.div(modulus, m)
+                        if rem == 0:
+                            irreducible = False
+                            break
+                    if irreducible:
+                        break
+            if not irreducible:
+                raise LazyError("no irreducible polynomial over F_p of form x^n+ax+b exists :( (an irreducible polynomial does exist but I haven't got round to implementing it yet)")
+
+            points = []
+            p_lookup = [0] * q**3
+            poly0 = sympy.poly(0, [x])
+            poly1 = sympy.poly(1, [x])
+            points.append([poly0, poly0, poly1])
+            for l in range(1, prime):
+                p_lookup[l] = 1
+            for a in members:
+                points.append([poly0, poly1, a])
+            for a in members:
+                for b in members:
+                    points.append([poly1, a, b])
+
+            cards = []
+            mapping = [-1] * (q**6 * 2)
+            i = 0
+            for l in points: # interpret points also as lines (duality of finite projective planes)
+                c = []
+                for p in points:
+                    pm = sympy.poly(sympy.rem((l[0]*p[0] + l[1]*p[1] + l[2]*p[2]).as_expr(), modulus), [x])
+                    cms = sum(c % prime for c in pm.coeffs())
+                    if cms == 0:
+                        key = p[0].as_expr()*q**6 + p[1].eval(prime)*q**3 + p[2].eval(prime)
+                        if mapping[key] == -1:
+                            mapping[key] = i
+                            i += 1
+                        c.append(mapping[key])
+                cards.append(c)
 
         return cards
 

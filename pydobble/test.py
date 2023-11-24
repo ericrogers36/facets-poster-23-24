@@ -3,9 +3,12 @@
 import dobble
 import itertools
 import sys
+import timeit
 
 def test_generator(q: int) -> bool:
+    start = timeit.default_timer()
     d = dobble.DobbleDeck(q)
+    delta_t = timeit.default_timer() - start
 
     assert(len(d) == q**2+q+1)
 
@@ -20,11 +23,15 @@ def test_generator(q: int) -> bool:
             n_same += n in c2
         assert(n_same == 1)
 
-    return True
+    return delta_t
 
 if __name__ == "__main__":
-    qs = [2, 3, 5, 7, 11, 13, 17, 23, 29, 31]
+    qs = [2, 3, 4, 5, 7, 8, 9, 11, 13, 16, 17, 23, 27, 29, 31, 32]
     for q in qs:
-        test_generator(q)
-        print("generator passed for q =", q)
+        try:
+            delta_t = test_generator(q)
+        except KeyboardInterrupt:
+            print("keyboard interrupt")
+            exit(130)
+        print(f"passed for q = {q} (generated in {round(delta_t, 4)}s)")
     print("passed all generation tests")
