@@ -65,6 +65,11 @@
 % \logoright{\includegraphics[height=7cm]{logo1.pdf}}
 %\logoleft{\includegraphics[height=7cm]{logos/uoelogo.png}}
 
+\setbeamertemplate{bibliography entry article}{}
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
 % ====================
 % Body
 % ====================
@@ -208,9 +213,8 @@ It is theorised that to simplify the printing process there are only $55$ cards 
   \end{block}
 
   \begin{block}{References}
-   \nocite{*}
-   \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
-
+%   \nocite{*}
+\footnotesize{\bibliographystyle{abbrv}\bibliography{poster}}
   \end{block}
 
 \end{column}
