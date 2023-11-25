@@ -14,9 +14,9 @@ TASKS:
 
 
 
-Ben - 1?
-Eric - 3?
-Sam - 
-Teagan - 
-Corrine - 
+Ben - 1
+Eric - 3
+Sam - 5
+Teagan -  2
+Corrine - 4
 
