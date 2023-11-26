@@ -124,15 +124,20 @@ However, there exists a link between Steiner systems and projective planes. If w
 Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
   \end{alertblock}
 
+  \begin{block}{Steiner Systems and Projective Planes}
+
+    Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them.
+    
+    \end{block}
+
 \end{column}
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
 
-  \begin{block}{Steiner Systems and Projective Planes}
-
-    Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. So if we draw this configuration for the $7$ card example we get the Fano Plane, shown in Figure \ref{fig:fano}.
+\begin{block}{}
+    We can say that these lines represent matching symbols on each card. So if we draw this configuration for the $7$ card example we get the Fano Plane, shown in Figure \ref{fig:fano}.
     \begin{multicols}{2}
 \begin{figure}
       \centering
@@ -164,16 +169,24 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
     Once again this visualises the fact that it is a Steiner system, where $q = p^n = 7^1$, $q + 1 = 8$ (no. of symbols on each card) and $q^2 + q + 1 = 57$, the no. of cards and the total no. of symbols. 
 
     It is theorised that to simplify the printing process there are only $55$ cards in Dobble. Cards can still be arranged in the same way and essentially 'skip' these points and it will still work. 
+
 \end{block}
+
+
+\begin{exampleblock}{Generating Dobble Decks}
+
+    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod m$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{0, 1, ... q-1\}, m = p$. 
+
+\end{exampleblock}
+
 \end{column}
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
 
-  \begin{exampleblock}{Generating Dobble Decks}
-
-    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod m$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{0, 1, ... q-1\}, m = p$. However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field; we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
+\begin{exampleblock}{}
+However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field; we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
 
     % this is such a horrible way of doing this... I can only beg for the forgiveness of the LaTeX gods
     \begin{minipage}{\textwidth-17.25em}
