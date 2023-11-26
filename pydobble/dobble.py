@@ -119,23 +119,19 @@ class DobbleDeck:
                 else:
                     raise ValueError("`q' is not a power of a prime")
 
-        if n == 1:
-            points = []
-            p_lookup = [0] * q**3
-            for i in range(q):
-                for j in range(q):
-                    for k in range(q):
-                        if not p_lookup[i*q**2+j*q+k]:
-                            points.append((i,j,k))
-                            # since [a:b:c] is equivalent to [ka:kb:kc] we make sure we don't have any duplicates
-                            for l in range(1, q):
-                                p_lookup[((i*l)%q)*q**2+((j*l)%q)*q+((k*l)%q)] = 1
+        points = [0] * (q**2+q+1)
+        cards = []
 
-            # we don't want [0:0:0]
-            points.pop(0)
+        if n == 1:
+            field = [i for i in range(q)]
+
+            for a in field:
+                points[(q+1)*a] = (0, 1, a)
+                for b in field:
+                    points[(q+1)*a+b+1] = (1, a, b)
+            points[q**2+q] = (0,0,1)
 
             # generate cards, associate each point with an integer in [0,q^2+q+1)
-            cards = []
             mapping = [-1] * q**3
             i = 0
             for l in points: # interpret points also as lines (duality of finite projective planes)
@@ -150,7 +146,7 @@ class DobbleDeck:
         else: # it gets VERY slow rather quickly so just using primes is much better :)
             x = sympy.symbols("x")
             powers = [prime**i for i in range(n, -1, -1)]
-            members = [sympy.poly(sum(int((i%powers[j])//powers[j+1])*x**(n-j-1) for j in range(n)), [x]) for i in range(q)]
+            field = [sympy.poly(sum(int((i%powers[j])//powers[j+1])*x**(n-j-1) for j in range(n)), [x]) for i in range(q)]
             modulus = 0
 
             # slightly dubious uncited https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields#Irreducible_polynomials but it seems to work??
@@ -158,7 +154,7 @@ class DobbleDeck:
                 for b in range(prime):
                     modulus = x**n + a*x + b
                     irreducible = True
-                    for m in members[prime:]:
+                    for m in field[prime:]:
                         quot, rem = sympy.div(modulus, m)
                         if rem == 0:
                             irreducible = False
@@ -168,20 +164,15 @@ class DobbleDeck:
             if not irreducible:
                 raise LazyError("no irreducible polynomial over F_p of form x^n+ax+b exists :( (an irreducible polynomial does exist but I haven't got round to implementing it yet)")
 
-            points = []
-            p_lookup = [0] * q**3
             poly0 = sympy.poly(0, [x])
             poly1 = sympy.poly(1, [x])
-            points.append([poly0, poly0, poly1])
-            for l in range(1, prime):
-                p_lookup[l] = 1
-            for a in members:
-                points.append([poly0, poly1, a])
-            for a in members:
-                for b in members:
-                    points.append([poly1, a, b])
+            
+            for a in range(q):
+                points[(q+1)*a] = (poly0, poly1, field[a])
+                for b in range(q):
+                    points[(q+1)*a+b+1] = (poly1, field[a], field[b])
+            points[q**2+q] = (poly0, poly0, poly1)
 
-            cards = []
             mapping = [-1] * (q**6 * 2)
             i = 0
             for l in points: # interpret points also as lines (duality of finite projective planes)

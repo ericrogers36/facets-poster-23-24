@@ -2,7 +2,6 @@
 
 import dobble
 import itertools
-import sys
 import timeit
 
 def test_generator(q: int) -> bool:
