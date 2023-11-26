@@ -2,11 +2,9 @@
 
 import argparse
 import copy
-import itertools
 import math
 import os
 import sympy
-import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -285,10 +283,10 @@ class DobbleDeck:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("q", type=int, help="q = pⁿ for p ∈ ℙ, n ∈ ℤ⁺")
-    parser.add_argument("--export-imgs", action="store_true", help="name of exported pdf file")
-    parser.add_argument("--images", metavar="paths", nargs="+", help="q²+q+1 paths to image files to be used")
+    parser.add_argument("--export-imgs", action="store_true", help="export PNG files of the individual cards instead of creating a single PDF")
+    parser.add_argument("--images", nargs="+", help="q²+q+1 paths to image files to be used")
     parser.add_argument("--output-path", help="name of exported pdf file")
-    parser.add_argument("--print", action="store_true", help="name of exported pdf file")
+    parser.add_argument("--print", action="store_true", help="print list of cards to STDOUT")
     args = parser.parse_args()
 
     deck = DobbleDeck(args.q)
