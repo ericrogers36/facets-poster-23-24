@@ -27,6 +27,14 @@
 \usepackage{multicol}
 
 % ====================
+% apparently listings and verbatim envionments don't like working inside blocks so this is maybe needed??
+% ====================
+
+\newenvironment{code}{\verb|}
+
+\newcommand{\ind}{\phantom{aaa}}
+
+% ====================
 % Lengths
 % ====================
 
@@ -165,8 +173,22 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
   \begin{exampleblock}{Generating Dobble Decks}
 
-    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a : b : c]$ where $[a : b : c] \equiv [\lambda a : \lambda b : \lambda c] \mod m$ for any $\lambda \in \mathbb{R}, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{1, 2, ... q-1\}, m = p$. However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field: we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
+    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod m$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{0, 1, ... q-1\}, m = p$. However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field; we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
 
+    % this is such a horrible way of doing this... I can only beg for the forgiveness of the LaTeX gods
+    \begin{minipage}{\textwidth-17.25em}
+        With the finite field $\mathbb{F}_q$, we can find all the points in $\mathbb{P}^2_{\mathbb{F}_2}$. To avoid over-counting, (i.e. counting both $[a:b:c]$ and $[\lambda a:\lambda b:\lambda c]$) we can count them as such (right).
+    \end{minipage}
+    \hspace{1em}
+    \begin{minipage}{15em}
+    \begin{code}points = [(0,0,1)]\newline
+        for a in field:\newline
+        \ind points.append((0,1,a))\newline
+        \ind for b in field:\newline
+        \ind \ind points.append((1,a,b))
+    \end{code}
+    \end{minipage}
+    
     Once we have the set of all elements in $\mathbb{F}^2_{\mathbb{P}_q}$, we can use the property of the duality of finite projective planes: any statement is equally valid if the points and lines are exchanged. Hence, we can interpret the points also as lines and if the sum of the corresponding components of a point and a line multiplied equals zero, then that point (symbol) lies on that line (card).
 
   \end{exampleblock}
