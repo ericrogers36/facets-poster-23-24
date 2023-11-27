@@ -13,7 +13,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 %\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
-\usepackage[size=custom,width=120,height=72,scale=1.2]{beamerposter}
+\usepackage[size=custom,width=120,height=72,scale=1.15]{beamerposter}
 %\usepackage[orientation=landscape,size=a1,scale=1.4]{beamerposter}
 %\usepackage[size=custom,width=108,height=63,scale=1]{beamerposter}
 \usetheme{gemini}
@@ -25,6 +25,30 @@
 \pgfplotsset{compat=1.14}
 \usepackage{anyfontsize}
 \usepackage{multicol}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{grey},
+  keywordstyle=\color{dkgreen},
+  commentstyle=\color{grey},
+  stringstyle=\color{red},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  frame=none
+}
 
 % ====================
 % apparently listings and verbatim envionments don't like working inside blocks so this is maybe needed??
@@ -123,12 +147,12 @@ These parameters are because:
 However, there exists a link between Steiner systems and projective planes. If we have a finite projective plane $P$ such that any line has exactly $q+1$ points, we can conclude that there are $q^2+q+1$ total points in $P$, and that $P$ is a $S(2, q+ 1, q^2 +q+ 1)$
 Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
   \end{alertblock}
+  
+  \begin{block}{Finite Fields}
 
-  \begin{block}{Steiner Systems, Dobble and Projective Planes}
+      A field is a set where arithmetic behaves in accordance with the field axioms \cite{Weisstein2023b}. Field axioms are a set of properties a field is required to have. These can be written in additive and multiplicative pairs. These pairs are associativity, commutativity, distributivity, identity and inverse \cite{Weisstein2023}. It is then rather intuitive that a finite field is thus a finite set of elements that satisfy these properties. The number of elements within a finite field is referred to as its order. A finite field can only exist if it has order $p^k$ where $p$ is a prime number and $k\in\mathbb{Z}^+$ \cite{cameron2000} (this is denoted as $\mathbb{F}_q$). This is to say that the order of a finite field can only be prime, or a power of a prime number \cite{cameron2000}. Using a finite field we can build a vector space, and its associated projective plane is a \emph{finite} projective plane. A finite field of order $q=p^k$ will produce the projective plane with $q^2+q+1$ points and lines \cite{Collingridge2018}.
 
-    Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. 
-    
-    \end{block}
+  \end{block}
 
 \end{column}
 
@@ -136,7 +160,9 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
 \begin{column}{\colwidth}
 
-\begin{block}{Steiner Systems, Dobble and Projective Planes (cont.)}
+\begin{block}{Steiner Systems, Dobble and Projective Planes}
+
+    Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. 
 
      So, if we draw this configuration for the $7$ card example we get the Fano Plane, shown in Figure \ref{fig:fano}.
     \begin{multicols}{2}
@@ -173,45 +199,43 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
 \end{block}
 
-
-\begin{exampleblock}{Generating Dobble Decks}
-
-    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod m$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{0, 1, ... q-1\}, m = p$. 
-
-\end{exampleblock}
-
 \end{column}
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
 
-\begin{exampleblock}{Generating Dobble Decks (cont.)}
-However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field; we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
+\begin{exampleblock}{Generating Dobble Decks}
 
-    % this is such a horrible way of doing this... I can only beg for the forgiveness of the LaTeX gods
-    \begin{minipage}{\textwidth-17.25em}
-        With the finite field $\mathbb{F}_q$, we can find all the points in $\mathbb{P}^2_{\mathbb{F}_2}$. To avoid over-counting, (i.e. counting both $[a:b:c]$ and $[\lambda a:\lambda b:\lambda c]$) we can count them as such (right).
-    \end{minipage}
-    \hspace{1em}
-    \begin{minipage}{15em}
-    \begin{code}points = [(0,0,1)]\newline
-        for a in field:\newline
-        \ind points.append((0,1,a))\newline
-        \ind for b in field:\newline
-        \ind \ind points.append((1,a,b))
-    \end{code}
-    \end{minipage}
+    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod m$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{0, 1, ... q-1\}, m = p$. 
+    
+    However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field; we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
     
     Once we have the set of all elements in $\mathbb{F}^2_{\mathbb{P}_q}$, we can use the property of the duality of finite projective planes: any statement is equally valid if the points and lines are exchanged. Hence, we can interpret the points also as lines and if the sum of the corresponding components of a point and a line multiplied equals zero, then that point (symbol) lies on that line (card).
 
+    As an example, we shall look at the process for $q = 3^2$ - we do this as follows:
+
+    \begin{enumerate}
+        \item Find the set $S$ of elements in the finite field $\mathbb{F}_9$ (its basis):
+            \begin{equation*}
+                S = \left\{ \sum_{i=0}^{2-1} c_ix^i : c_i \in \mathbb{Z}^+, c_i < 3 \right\} = \left\{ 0, 1, 2, x, x+1, x+2, 2x+1, 2x+2 \right\}
+            \end{equation*}
+        \item Find an irreducible polynomial $g(x)$ of degree $n = 2$. We do this by exhaustion (note that for $n=1$, $x$ is irreducible by definition). We find that $g(x) = x^2+1$ is irreducible over $S$.
+        \item find the set of all elements in the finite field $\mathbb{P}^2_{\mathbb{F}_9}$ (avoiding counting $[a:b:c]$ and $[\lambda a:\lambda b:\lambda c]$ as they are equivalent). We do this by counting them as
+
+        \begin{center}
+            \begin{minipage}{14em}
+                \lstinputlisting{code_example.py}
+            \end{minipage}
+        \end{center}
+
+        \item Find which points are incident to which lines (using the property of duality). We shall treat the three-tuples in $\mathbb{P}^2_{\mathbb{F}_9}$ as vectors in $\mathbb{R}^3$: the incidences of the points and lines are then given for a position vector $P = \langle a,b,c \rangle$ and a line $\overrightarrow{L} = \langle 0,0,0 \rangle + \mu \langle \alpha,\beta,\gamma \rangle$ such that $P \cdot \underline{\ell} = 0 \mod g(x) \mod p$.
+
+        \item The output is analogous to which symbols lie on which cards, of which there are $q+1$ symbols on each of the $q^2+q+1$ cards.
+    \end{enumerate}
+
   \end{exampleblock}
 
-  \begin{block}{Finite Fields}
-
-      A field is a set where arithmetic behaves in accordance with the field axioms \cite{Weisstein2023b}. Field axioms are a set of properties a field is required to have. These can be written in additive and multiplicative pairs. These pairs are associativity, commutativity, distributivity, identity and inverse \cite{Weisstein2023}. It is then rather intuitive that a finite field is thus a finite set of elements that satisfy these properties. The number of elements within a finite field is referred to as its order. A finite field can only exist if it has order $p^k$ where $p$ is a prime number and $k\in\mathbb{Z}^+$ \cite{cameron2000} (this is denoted as $\mathbb{F}_q$). This is to say that the order of a finite field can only be prime, or a power of a prime number \cite{cameron2000}. Using a finite field we can build a vector space, and its associated projective plane is a \emph{finite} projective plane. A finite field of order $q=p^k$ will produce the projective plane with $q^2+q+1$ points and lines \cite{Collingridge2018}.
-
-  \end{block}
  
   \begin{block}{References}
 %   \nocite{*}
