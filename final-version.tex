@@ -201,24 +201,24 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
 \begin{exampleblock}{Generating Dobble Decks}
 
-    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod m$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $\mathbb{F}_q = \{0, 1, ... q-1\}, m = p$. 
+    The key to representing a game of Dobble as a finite projective plane of a prime power order $q = p^n$, is to find the set $S$ of all elements in $\mathbb{F}_q$: three-tuples $[a:b:c]$ where $[a:b:c] \equiv [\lambda a:\lambda b:\lambda c] \mod p$ for $a,b,c,\lambda \in \mathbb{F}_q, \lambda \ne 0$. When $n = 1$, i.e. $q$ is prime, we have $S = \{0, 1, ... q-1\}$. 
 \end{exampleblock}
 \end{column}
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
-\begin{exampleblock}{Generating Dobble Decks (contd.)}
+\begin{exampleblock}{Generating Dobble Decks (cont.)}
     However, if $n > 1$, the corresponding set $\{ 0, 1, ... p^n-1 \}$ equipped with the operators $+$ and $\times$ modulo $p$ is not a field; we can instead construct a finite field of degree $p^n$ by using a polynomial basis. This is the set $S$ of all polynomials such that $c_0 + c_1x + c_2x^2 + \cdots + c_{n-1}x^{n-1}$ where $c_0, ..., c_{n-1} \in \{0, 1, ... p-1\}$, and we also require an irreducible polynomial over $S$ of degree $n$ for the first modulus of the polynomial addition and multiplication operations (then we also work modulo $p$); such an irreducible polynomial always exists \cite{magidin2012}.
     
-    Once we have the set of all elements in $\mathbb{F}^2_{\mathbb{P}_q}$, we can use the property of the duality of finite projective planes: any statement is equally valid if the points and lines are exchanged. Hence, we can interpret the points also as lines and if the sum of the corresponding components of a point and a line multiplied equals zero, then that point (symbol) lies on that line (card).
+    Once we have the set of all elements in $\mathbb{P}^2_{\mathbb{F}_q}$, we can use the property of the duality of finite projective planes: any statement is equally valid if the points and lines are exchanged. Hence, we can interpret the points also as lines, and if the sum of the corresponding components of a point and a line multiplied equals zero, then that point (symbol) lies on that line (card).
 
-    As an example, we shall look at the process for $q = 3^2$ - we do this as follows:
+    As an example, we shall look at the process of generating a deck for $q = 3^2$:
 
     \begin{enumerate}
         \item Find the set $S$ of elements in the finite field $\mathbb{F}_9$ (its basis):
             \begin{equation*}
-                S = \left\{ \sum_{i=0}^{2-1} c_ix^i : c_i \in \mathbb{Z}^+, c_i < 3 \right\} = \left\{ 0, 1, 2, x, x+1, x+2, 2x+1, 2x+2 \right\}
+                S = \left\{ \sum_{i=0}^{2-1} c_ix^i : c_i \in \mathbb{Z}^+, c_i < 3 \right\} = \left\{ 0, 1, 2, x, x+1, x+2, 2x, 2x+1, 2x+2 \right\}
             \end{equation*}
         \item Find an irreducible polynomial $g(x)$ of degree $n = 2$. We do this by exhaustion (note that for $n=1$, $x$ is irreducible by definition). We find that $g(x) = x^2+1$ is irreducible over $S$.
         \item find the set of all elements in the finite field $\mathbb{P}^2_{\mathbb{F}_9}$ (avoiding counting $[a:b:c]$ and $[\lambda a:\lambda b:\lambda c]$ as they are equivalent). We do this by counting them as
@@ -231,7 +231,7 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
         \item Find which points are incident to which lines (using the property of duality). We shall treat the three-tuples in $\mathbb{P}^2_{\mathbb{F}_9}$ as vectors in $\mathbb{R}^3$: the incidences of the points and lines are then given for a position vector $P = \langle a,b,c \rangle$ and a line $\ell = \langle 0,0,0 \rangle + \mu \langle \alpha,\beta,\gamma \rangle$ such that $P \cdot \ell = 0 \mod g(x) \mod p$.
 
-        \item The output is analogous to which symbols lie on which cards, of which there are $q+1$ symbols on each of the $q^2+q+1$ cards.
+        \item The combinations of points on each line is analogous to the combinations of symbols on cards: we have $q+1$ symbols on each of the $q^2+q+1$ cards.
     \end{enumerate}
 
   \end{exampleblock}
