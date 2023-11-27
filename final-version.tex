@@ -106,13 +106,13 @@
 
   \begin{alertblock}{The Dobble Problem and Combinatorics}
 
-    Let us first imagine that we have a big set of unique items. We wish to have subsets of this big set which contain a fixed, equal number of items within them.
+    Let us first imagine that we have a big set $A$ of unique items. We wish to create subsets of $A$ which contain a fixed, equal number of items within them.
     
     The rule is that these subsets have to have an overlap of \emph{one item} - there cannot be an overlap of two unique items between any two subsets. In effect, for any pair of items in any subset, \emph{this pair cannot reappear in any other subset}.
 
-    This is known as a Steiner system notated as $S(2,k,n)$, where $k$ is the number of blocks and $n$ is the number of total items. (It can also be referred to as a symmetric $2$-design, a $2$-$(n,k,1)$ design).
+    This is known as a Steiner system notated as $S(2,k,n)$, where $k$ is the number of subsets (known as blocks) and $n$ is the number of total items. (It can also be referred to as a symmetric $2$-design, a $2$-$(n,k,1)$ design).
 
-This problem is very much akin to Dobble - in essence, the items are points and the subsets are cards. For the standard verison of Dobble, we essentially just have the Steiner system $S(2,8,57)$.
+This problem is very much akin to Dobble - in essence, the items are points and the subsets/blocks are cards. For the standard version of Dobble, we essentially just have the Steiner system $S(2,8,57)$.
 These parameters are because:
 \begin{itemize}
     \item We have 57 cards total in Dobble
@@ -124,7 +124,7 @@ However, there exists a link between Steiner systems and projective planes. If w
 Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
   \end{alertblock}
 
-  \begin{block}{Steiner Systems and Projective Planes}
+  \begin{block}{Steiner Systems, Dobble and Projective Planes}
 
     Consider a game of Dobble with only $7$ cards. If each point represents a card, lines can be drawn such that if we were to chose any two of the seven points there is a line that connects them. We can say that these lines represent matching symbols on each card. 
     
@@ -136,9 +136,9 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 
 \begin{column}{\colwidth}
 
-\begin{block}{Steiner Systems and Projective Planes (cont.)}
+\begin{block}{Steiner Systems, Dobble and Projective Planes (cont.)}
 
-     So if we draw this configuration for the $7$ card example we get the Fano Plane, shown in Figure \ref{fig:fano}.
+     So, if we draw this configuration for the $7$ card example we get the Fano Plane, shown in Figure \ref{fig:fano}.
     \begin{multicols}{2}
 \begin{figure}
       \centering
@@ -160,16 +160,16 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 \end{figure}
     \end{multicols}
   
-    It follows that each card contains $3$ symbols, no two cards are the same and any two cards will have one and only one matching symbol with $7$ different symbols in total \cite{westenbrink2022}.
-    We can see that this too is a Steiner system where $q = p^n = 2^1$, $q + 1 = 3$ (no. of symbols on each card) and $q^2 + q + 1 = 7$, which is the no. of cards and the total no. of symbols.
+    It follows that each card contains $3$ symbols, no two cards are the same (i.e. no lines are parallel) and any two cards will have one and \emph{only one} matching symbol with $7$ different symbols in total \cite{westenbrink2022}.
+    We can see that this is just the Steiner system $S(2,3,7)$ where $q = p^n = 2^1$, $q + 1 = 3$ (no. of symbols on each card) and $q^2 + q + 1 = 7$, which is the no. of cards and the total no. of symbols.
     
     Now we can apply this to our full sized version of Dobble. We can start by constructing a $7\times7$ grid of points and lines such that if we choose any two of the $49$ points there is a line that connects them. This can be achieved by ''Wrapping around`` the grid until it goes through $7$ points. This grid can be seen in Figure \ref{fig:pporder7}.
 
-    We are then left with a grid of $56$ lines and we can see that there are actually $8$ different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point \cite{spencer1999}, hence there are $8$ more points at infinity that can be connected with a final line. Therefore, all lines go through $8$ points \cite{Parker2021}.
+    We are then left with a grid of $56$ lines and we can see that there are actually $8$ different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point \cite{spencer1999}, hence there are $8$ more points at infinity that can be connected with a final line. Therefore, all lines (now $57$ in total) go through $8$ points \cite{Parker2021}.
 
-    Once again this visualises the fact that it is a Steiner system, where $q = p^n = 7^1$, $q + 1 = 8$ (no. of symbols on each card) and $q^2 + q + 1 = 57$, the no. of cards and the total no. of symbols. 
+    This can also be framed as a representation of $S(2,8,57)$ where $q = p^n = 7^1$, $q + 1 = 8$ (no. of symbols on each card) and $q^2 + q + 1 = 57$, the no. of cards and the total no. of symbols. 
 
-    It is theorised that to simplify the printing process there are only $55$ cards in Dobble. Cards can still be arranged in the same way and essentially 'skip' these points and it will still work. 
+    It is theorised that to simplify the printing process there are only $55$ cards in Dobble. Cards can still be arranged in the same way, essentially `skipping' these points and the game will still work. 
 
 \end{block}
 
