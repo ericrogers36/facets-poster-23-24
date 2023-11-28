@@ -12,7 +12,3 @@
 *.synctex.gz
 *.toc
 *.xdv
-
-# python
-__pycache__
-*.pyc

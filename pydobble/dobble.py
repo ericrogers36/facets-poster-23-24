@@ -8,6 +8,12 @@ import sympy
 
 from PIL import Image, ImageDraw, ImageFont
 
+try:
+    import cdobble as cd
+    has_cdobble = True
+except ImportError:
+    has_cdobble = False
+
 # paper sizes
 A = lambda i: (841//math.sqrt(2**i), 1189//math.sqrt(2**i))
 B = lambda i: (1000//math.sqrt(2**i), 1414//math.sqrt(2**i))
@@ -55,9 +61,12 @@ class DobbleDeck:
         "symbtype": "text"
     }
 
-    def __init__(self, q, mapping=None, options=None):
+    def __init__(self, q, cdobble=False, mapping=None, options=None):
+        if cdobble and not has_cdobble:
+            raise ImportError("cdobble could not be loaded. Are you sure it has been built?")
+
         self._q = q
-        self._cards = self._gen_deck(q)
+        self._cards = self._gen_deck(q, cdobble)
         self._img_cards = [None] * len(self)
         self._img_symbols = [None] * len(self)
         self._options = options or DobbleDeck._default_opts
@@ -100,7 +109,7 @@ class DobbleDeck:
         self._img_symbols = [None] * len(self)
         self._requires_img_regen = True
 
-    def _gen_deck(self, q):
+    def _gen_deck(self, q, cdobble):
         if q < 2:
             raise ValueError("`q' should be an integer at least 2")
         sieve = sieve_of_eratosthenes(q)
@@ -116,6 +125,9 @@ class DobbleDeck:
                     break
                 else:
                     raise ValueError("`q' is not a power of a prime")
+
+        if cdobble:
+            return cd.generate(prime, n)
 
         points = [0] * (q**2+q+1)
         cards = []
