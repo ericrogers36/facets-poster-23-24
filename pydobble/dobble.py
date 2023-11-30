@@ -146,12 +146,10 @@ class DobbleDeck:
             i = 0
             for l in points: # interpret points also as lines (duality of finite projective planes)
                 c = []
-                for p in points:
+                for pi in range(len(points)):
+                    p = points[pi]
                     if (l[0]*p[0] + l[1]*p[1] + l[2]*p[2]) % q == 0:
-                        if mapping[p[0]*q**2+p[1]*q+p[2]] == -1:
-                            mapping[p[0]*q**2+p[1]*q+p[2]] = i
-                            i += 1
-                        c.append(mapping[p[0]*q**2+p[1]*q+p[2]])
+                        c.append(pi)
                 cards.append(c)
         else: # it gets VERY slow rather quickly so just using primes is much better :)
             x = sympy.symbols("x")
@@ -160,17 +158,19 @@ class DobbleDeck:
             modulus = 0
 
             # slightly dubious uncited https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields#Irreducible_polynomials but it seems to work??
-            for a in range(prime):
-                for b in range(prime):
+            for a in range(0, prime):
+                for b in range(1, prime):
                     modulus = x**n + a*x + b
                     irreducible = True
                     for m in field[prime:]:
                         quot, rem = sympy.div(modulus, m)
-                        if rem == 0:
+                        if (rem.as_expr() % prime) == 0:
                             irreducible = False
                             break
                     if irreducible:
                         break
+                if irreducible:
+                    break
             if not irreducible:
                 raise LazyError("no irreducible polynomial over F_p of form x^n+ax+b exists :( (an irreducible polynomial does exist but I haven't got round to implementing it yet)")
 
@@ -183,19 +183,14 @@ class DobbleDeck:
                     points[(q+1)*a+b+1] = (poly1, field[a], field[b])
             points[q**2+q] = (poly0, poly0, poly1)
 
-            mapping = [-1] * (q**6 * 2)
-            i = 0
             for l in points: # interpret points also as lines (duality of finite projective planes)
                 c = []
-                for p in points:
+                for pi in range(len(points)):
+                    p = points[pi]
                     pm = sympy.poly(sympy.rem((l[0]*p[0] + l[1]*p[1] + l[2]*p[2]).as_expr(), modulus), [x])
                     cms = sum(c % prime for c in pm.coeffs())
                     if cms == 0:
-                        key = p[0].as_expr()*q**6 + p[1].eval(prime)*q**3 + p[2].eval(prime)
-                        if mapping[key] == -1:
-                            mapping[key] = i
-                            i += 1
-                        c.append(mapping[key])
+                        c.append(pi)
                 cards.append(c)
 
         return cards
@@ -295,13 +290,14 @@ class DobbleDeck:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("q", type=int, help="q = pⁿ for p ∈ ℙ, n ∈ ℤ⁺")
+    parser.add_argument("--cdobble", action="store_true", help="use C backend rather than Python (+Sympy)")
     parser.add_argument("--export-imgs", action="store_true", help="export PNG files of the individual cards instead of creating a single PDF")
     parser.add_argument("--images", nargs="+", help="q²+q+1 paths to image files to be used")
     parser.add_argument("--output-path", help="name of exported pdf file")
     parser.add_argument("--print", action="store_true", help="print list of cards to STDOUT")
     args = parser.parse_args()
 
-    deck = DobbleDeck(args.q)
+    deck = DobbleDeck(args.q, cdobble=args.cdobble)
 
     if args.print:
         print(deck.cards)

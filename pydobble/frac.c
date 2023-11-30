@@ -33,7 +33,7 @@ frac_t frac_div(frac_t frac1, frac_t frac2) {
 // take modulus m of frac
 frac_t frac_mod(frac_t frac, unsigned int mod) {
 	frac_t fracans = frac_simplify(frac);
-	fracans.numerator %= mod;
+	fracans.numerator %= ((int)mod)*fracans.denominator;
 	return fracans;
 }
 

@@ -1,5 +1,9 @@
 #include "poly.h"
 
+int int_exp(int base, unsigned int exponent) {
+	return exponent == 0 ? 1 : base * int_exp(base, exponent-1);
+}
+
 // poly stuff
 
 void poly_new(poly_t *p, unsigned int capacity) {
@@ -105,7 +109,7 @@ void poly_poly_mult(poly_t *a, poly_t b) {
 	return;
 }
 
-void poly_scalar_mod(poly_t *a, unsigned int b) {
+void poly_int_mod(poly_t *a, unsigned int b) {
 	for (int i = 0; i <= a->degree; i++) {
 		a->coeffs[i] %= b;
 	}
@@ -122,7 +126,7 @@ void frac_poly_new(frac_poly_t *p, unsigned int capacity) {
 	p->coeffs = p->_coeffs_ptr;
 	p->_capacity = capacity;
 	frac_t zero = frac_new(0, 1);
-	for (int i = 0; i <= capacity; i++) {
+	for (unsigned int i = 0; i <= capacity; i++) {
 		p->coeffs[i] = zero;
 	}
 	return;
@@ -131,6 +135,13 @@ void frac_poly_new(frac_poly_t *p, unsigned int capacity) {
 void frac_poly_copy(frac_poly_t *copy, frac_poly_t orig) {
 	frac_poly_new(copy, orig._capacity);
 	memcpy(copy->coeffs, orig.coeffs, sizeof(frac_t)*(orig._capacity+1));
+	copy->degree = orig.degree;
+	/*
+	frac_poly_print(orig, stdout);
+	printf(", ");
+	frac_poly_print(*copy, stdout);
+	printf("kaj\n");
+	*/
 	return;
 }
 
@@ -212,6 +223,21 @@ void frac_poly_frac_mult(frac_poly_t *a, frac_t b) {
 	return;
 }
 
+void frac_poly_frac_poly_mult(frac_poly_t *a, frac_poly_t b) {
+	frac_poly_t mult;
+	frac_poly_new(&mult, a->degree+b.degree);
+	mult.degree = a->degree+b.degree;
+	for (int i = 0; i <= a->degree; i++) {
+		for (int j = 0; j <= b.degree; j++) {
+			mult.coeffs[i+j] = frac_add(mult.coeffs[i+j], frac_mult(a->coeffs[i], b.coeffs[j]));
+		}
+	}
+	frac_poly_destroy(a);
+	memcpy(a, &mult, sizeof(frac_poly_t));
+	return;
+}
+
+
 /* TODO: fix - this seems to introduce some undefined behaviour (ooooh)
 void frac_poly_frac_mono_mult(frac_poly_t *polyans, frac_poly_t poly, frac_t mono_coeff, unsigned int mono_deg) {
 	frac_poly_new(polyans, poly.degree+mono_deg);
@@ -221,6 +247,22 @@ void frac_poly_frac_mono_mult(frac_poly_t *polyans, frac_poly_t poly, frac_t mon
 	return;
 }
 */
+
+void frac_poly_int_mod(frac_poly_t *a, unsigned int b) {
+	for (int i = 0; i <= a->degree; i++) {
+		a->coeffs[i] = frac_mod(a->coeffs[i], b);
+	}
+	frac_poly_recalc_deg(a);
+	return;
+}
+
+int frac_poly_as_poly_int_eval(frac_poly_t p, int x) {
+	int ans = 0;
+	for (int i = 0; i <= p.degree; i++) {
+		ans += p.coeffs[i].numerator * int_exp(x, i);
+	}
+	return ans;
+}
 
 // conversions
 
@@ -268,17 +310,34 @@ void frac_poly_poly_mod(frac_poly_t *ddend, poly_t b) {
 			frac_poly_minus(ddend, sub);
 			frac_poly_destroy(&sub);
 		}
+	}
+	return;
+}
 
-		/*
-		poly_print(*a, stdout);
-		printf(" = (");
-		poly_print(b, stdout);
-		printf(")(");
-		frac_poly_print(quot, stdout);
-		printf(") + (");
-		frac_poly_print(ddend, stdout);
-		printf(")\n");
-		*/
+void frac_poly_frac_poly_mod(frac_poly_t *ddend, frac_poly_t b) {
+	if (ddend->degree >= b.degree) {
+		frac_poly_t dsor, quot, sub;
+		frac_poly_copy(&dsor, b); // divisor
+		frac_poly_new(&quot, ddend->degree-b.degree); // quotient
+		frac_t b_coeff = b.coeffs[b.degree];
+
+		quot.degree = ddend->degree - b.degree;
+
+		while (ddend->degree >= dsor.degree) {
+			frac_t term_coeff = frac_div(ddend->coeffs[ddend->degree], b_coeff);
+			unsigned int term_power = ddend->degree-dsor.degree;
+			quot.coeffs[term_power] = term_coeff;
+
+			//frac_poly_frac_mono_mult(&sub, dsor, term_coeff, ddend.degree-dsor.degree);
+			frac_poly_new(&sub, ddend->degree);
+			for (int i = 0; i <= dsor.degree; i++) {
+				sub.coeffs[i+term_power] = frac_mult(dsor.coeffs[i], term_coeff);
+			}
+			sub.degree = ddend->degree;
+			
+			frac_poly_minus(ddend, sub);
+			frac_poly_destroy(&sub);
+		}
 	}
 	return;
 }
