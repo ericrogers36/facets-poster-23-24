@@ -3,4 +3,4 @@ Poster Project for the Facets of Mathematics Course at the University of Edinbur
 
 This poster explains the relationship between the projective plane and the popular card game Dobble. 
 
-In addition, a python script with a C backend was created to generate dobble cards, using theory described in the poster.
+In addition, a Python script with a C backend was created to generate dobble cards, using theory described in the poster.
