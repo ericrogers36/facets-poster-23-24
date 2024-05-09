@@ -1,8 +1,9 @@
-% Unofficial University of Edinburgh
+% Unofficial University of Edinburgh Poster
+
+% Adapted from the University of Cambridge Version
 % https://github.com/andiac/gemini-cam
 % a fork of https://github.com/anishathalye/gemini
 % also refer to https://github.com/k4rtik/uchicago-poster
-% Adapted from the University of Cambridge Version
 
 \documentclass[final]{beamer} 
 
@@ -31,6 +32,8 @@
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{grey}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% Setup Listins for Coding Example
 
 \lstset{frame=tb,
   language=Python,
@@ -109,7 +112,8 @@
 \begin{document}
 
 % Refer to https://github.com/k4rtik/uchicago-poster
-% logo: https://www.cam.ac.uk/brand-resources/about-the-logo/logo-downloads
+% logo: https://communications-marketing.ed.ac.uk/marketing/brand
+
 \addtobeamertemplate{headline}{}
 {
     \begin{tikzpicture}[remember picture,overlay]
@@ -180,7 +184,7 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
 \end{figure}
 
 \begin{figure}
-    \includegraphics[width=14cm,trim={0 0.5cm 0 2cm},clip]{image1}
+    \includegraphics[width=14cm,trim={0 0.5cm 0 2cm},clip]{graphics/order7.png}
     \caption{57 Cards - The Finite Plane (order 7) \cite{beresford2011}}
     \label{fig:pporder7}
 \end{figure}
@@ -189,7 +193,7 @@ Steiner system (or a $2$-$(q^2 +q+ 1, q + 1, 1)$ design) \cite{storme2006}.
     It follows that each card contains $3$ symbols, no two cards are the same (i.e. no lines are parallel) and any two cards will have one and \emph{only one} matching symbol with $7$ different symbols in total \cite{westenbrink2022}.
     We can see that this is just the Steiner system $S(2,3,7)$ where $q = p^n = 2^1$, $q + 1 = 3$ (no. of symbols on each card) and $q^2 + q + 1 = 7$, which is the no. of cards and the total no. of symbols.
     
-    Now we can apply this to our full sized version of Dobble. We can start by constructing a $7\times7$ grid of points and lines such that if we choose any two of the $49$ points there is a line that connects them. This can be achieved by ''Wrapping around`` the grid until it goes through $7$ points. This grid can be seen in Figure \ref{fig:pporder7}.
+    Now we can apply this to our full sized version of Dobble. We can start by constructing a $7\times7$ grid of points and lines such that if we choose any two of the $49$ points there is a line that connects them. This can be achieved by ``Wrapping around'' the grid until it goes through $7$ points. This grid can be seen in Figure \ref{fig:pporder7}.
 
     We are then left with a grid of $56$ lines and we can see that there are actually $8$ different systems of $7$ parallel lines. Each collection of parallel lines converges at infinity at some point \cite{spencer1999}, hence there are $8$ more points at infinity that can be connected with a final line. Therefore, all lines (now $57$ in total) go through $8$ points \cite{Parker2021}.
 
