@@ -7,4 +7,4 @@ In addition, a Python script with a C backend was created to generate Dobble car
 
 ### Installation
 
-Instructions for installation will follow in due course.
+If (for some bizzare reason) you wish to create your own dobble cards (who *doesn't* want their own custom dobble cards!), instructions for installation will follow in due course. It may require a bit of cleanup on our end for there to be a usable version, so watch this space. Hopefully something will be up at some point. In the meantime, feel free to read over the code and our poster :)
